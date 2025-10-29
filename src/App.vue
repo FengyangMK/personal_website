@@ -1,5 +1,11 @@
 <template>
-    <div class="text-3xl font-bold bg-indigo-400">111</div>
+    <div>
+        <RainbowButton>Hello World</RainbowButton>
+        <RippleButton>Hello World</RippleButton>
+    </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { RainbowButton } from './components/ui/rainbow-button'
+import { RippleButton } from './components/ui/ripple-button'
+</script>
