@@ -13,7 +13,7 @@ export default defineConfig([
         rules: {
             ...js.configs.recommended.rules,
             ...pluginVue.configs['flat/recommended'].rules,
-            'no-console': 'error',
+            // 'no-console': 'error',
             'simple-import-sort/imports': 'error',
             'prettier/prettier': 'error'
         },
@@ -31,7 +31,8 @@ export default defineConfig([
             vue: pluginVue,
             prettier: prettier,
             'simple-import-sort': importSort
-        }
+        },
+        extends: ['./.eslintrc-auto-import.json']
     },
     globalIgnores(['node_modules', 'dist', 'public'])
 ])

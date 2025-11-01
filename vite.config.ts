@@ -2,8 +2,9 @@ import path from 'node:path'
 
 import tailwindcss from '@tailwindcss/vite'
 import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
-
 /**
  * 解析路径
  * @param relativePath 相对路径
@@ -14,7 +15,20 @@ export const resolvePath = (relativePath: string) => {
 }
 
 export default defineConfig({
-    plugins: [vue(), tailwindcss()],
+    plugins: [
+        vue(),
+        tailwindcss(),
+        AutoImport({
+            imports: ['vue', 'vue-router'],
+            dts: resolvePath('./src/auto-imports.d.ts'),
+            eslintrc: {
+                enabled: true
+            }
+        }),
+        Components({
+            dts: resolvePath('./src/components.d.ts')
+        })
+    ],
     resolve: {
         alias: {
             '@': resolvePath('./src')
