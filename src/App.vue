@@ -44,15 +44,15 @@
 </template>
 
 <script setup lang="ts">
-import { useColorMode } from '@vueuse/core'
+import { Button } from '@/components/ui/button'
 import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
     DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu'
-import { Button } from '@/components/ui/button'
 import { Icon } from '@iconify/vue'
+import { useColorMode } from '@vueuse/core'
 
 const route = useRoute()
 

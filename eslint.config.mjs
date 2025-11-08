@@ -7,6 +7,8 @@ import pluginVue from 'eslint-plugin-vue'
 import globals from 'globals'
 import vueEslintParser from 'vue-eslint-parser'
 
+import autoImport from './.eslintrc-auto-import.json' with { type: 'json' }
+
 export default defineConfig([
     {
         files: ['**/*.{js,ts,tsx,vue}'],
@@ -14,7 +16,19 @@ export default defineConfig([
             ...js.configs.recommended.rules,
             ...pluginVue.configs['flat/recommended'].rules,
             // 'no-console': 'error',
-            'simple-import-sort/imports': 'error',
+            'simple-import-sort/imports': [
+                'error',
+                {
+                    groups: [
+                        // 第三方包
+                        ['^[a-z]'],
+                        // 以 @ 开头的导入
+                        ['^@'],
+                        // 相对路径导入
+                        ['^\\.']
+                    ]
+                }
+            ],
             'prettier/prettier': 'error'
         },
         languageOptions: {
@@ -24,15 +38,15 @@ export default defineConfig([
             },
             globals: {
                 ...globals.browser,
-                ...globals.node
+                ...globals.node,
+                ...autoImport.globals
             }
         },
         plugins: {
             vue: pluginVue,
             prettier: prettier,
             'simple-import-sort': importSort
-        },
-        extends: ['./.eslintrc-auto-import.json']
+        }
     },
     globalIgnores(['node_modules', 'dist', 'public'])
 ])

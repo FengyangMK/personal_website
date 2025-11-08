@@ -1,10 +1,10 @@
 import path from 'node:path'
-
-import tailwindcss from '@tailwindcss/vite'
-import vue from '@vitejs/plugin-vue'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { defineConfig } from 'vite'
+
+import tailwindcss from '@tailwindcss/vite'
+import vue from '@vitejs/plugin-vue'
 /**
  * 解析路径
  * @param relativePath 相对路径

@@ -51,7 +51,8 @@ const props = withDefaults(defineProps<RippleButtonProps>(), {
 })
 
 const emit = defineEmits<{
-    (e: 'click', event: MouseEvent): void
+    // eslint-disable-next-line no-unused-vars
+    (_e: 'click', _event: MouseEvent): void
 }>()
 
 const rippleButtonRef = ref<HTMLButtonElement | null>(null)
@@ -80,6 +81,7 @@ watchEffect(() => {
         const lastRipple = buttonRipples.value[buttonRipples.value.length - 1]
         setTimeout(() => {
             buttonRipples.value = buttonRipples.value.filter(
+                // @ts-ignore
                 (ripple) => ripple.key !== lastRipple.key
             )
         }, props.duration)
